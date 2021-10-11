@@ -66,7 +66,7 @@ Even when giving a pathname to a JSON configuration, input.py will still try to 
 
 ```
 {
-  "USER_NAME": "marcof",
+  "USER_NAME": "<your_user_name>",
   "MAIN_TEST_PATH": "<your test path>/unit.test",
   "DEVELOPMENT_ENVIRONMENT": true,
   "COMPONENT_SPECIFIC":
