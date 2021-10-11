@@ -16,9 +16,15 @@ illustrate the interpretation of the provided tensorboard plots and highlight im
 consider when analysing the results of a completed run.
 
 ### General usage
-The tutorials are provided in the form of jupyter notebooks. To run them from command line:
+The tutorials are provided in the form of jupyter notebooks. To run them from command line, first create the environment (NB: run this only once on your machine)
+
+`conda env create -f environment.yml`
+
+then, if the `lib-invent` environment was correcltly created (see the log of the previous command) you can activate it wvery time you need it:
 
 `$ conda activate lib-invent` \
+
+Finally, move to the tutorial folder and lauch the nootebook:
 `$ cd <project_directory>/tutorial`\
 `$ jupyter notebook`
 
