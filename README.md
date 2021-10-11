@@ -61,6 +61,23 @@ To run, type:
 
 All output files are in tsv format (the separator is \t). This is also the expected format of the input files where these correspond to a dataset.
 
+#### General configuration
+Even when giving a pathname to a JSON configuration, input.py will still try to read some general configuration from `../configurations/config.json` (see line 86 in `running_modes/manager.py`). Therefore, you should create a `config.json` file under the `configuration` folder according to the example present in the same folder. Most of the content in the example seems to be specific to the author's environment. So far it looks like a minimal general configuration file is:
+
+```
+{
+  "USER_NAME": "marcof",
+  "MAIN_TEST_PATH": "<your test path>/unit.test",
+  "DEVELOPMENT_ENVIRONMENT": true,
+  "COMPONENT_SPECIFIC":
+  {
+  },
+  "ENVIRONMENTAL_VARIABLES":
+  {
+  }
+}
+```
+
 #### Configurations
 Each configuration JSON file should contain a field `"run_type"`, which determines the running mode to be invoked. The strings to be passed as an argument can be found contained in the `running_modes/enums/running_mode_enum.py` file.
 The second field is called `"parameters"` and takes a dictionary as an input. This dictionary contains all the arguments specified by the configuration of the appropriate running mode - these are defined in the `running_modes/configurations` folder.
