@@ -12,6 +12,9 @@ class LearningStrategy:
     def __new__(cls, critic_model, optimizer, configuration: LearningStrategyConfiguration, logger=None) \
             -> BaseLearningStrategy:
         learning_strategy_enum = LearningStrategyEnum()
+
+        configuration.name = configuration.name.lower()
+
         if learning_strategy_enum.DAP == configuration.name:
             return DAPStrategy(critic_model, optimizer, configuration, logger)
         if learning_strategy_enum.MAULI == configuration.name:
