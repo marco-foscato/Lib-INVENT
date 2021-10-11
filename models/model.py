@@ -11,7 +11,7 @@ from running_modes.enums import GenerativeModelRegimeEnum
 
 class DecoratorModel:
 
-    def __init__(self, vocabulary, decorator, max_sequence_length=256, no_cuda=False, mode="train"):
+    def __init__(self, vocabulary, decorator, max_sequence_length=256, no_cuda=True, mode="train"):
         """
         Implements the likelihood and scaffold_decorating functions of the decorator model.
         :param vocabulary: A DecoratorVocabulary instance with the vocabularies of both the encoder and decoder.
@@ -41,7 +41,7 @@ class DecoratorModel:
         :param mode: Mode in which the model should be initialized.
         :return: An instance of the RNN.
         """
-        data = torch.load(path)
+        data = torch.load(path,map_location=torch.device('cpu'))
 
         decorator = mdec.Decorator(**data["decorator"]["params"])
         decorator.load_state_dict(data["decorator"]["state"])
@@ -111,12 +111,12 @@ class DecoratorModel:
         batch_size = scaffold_seqs.size(0)
 
         input_vector = torch.full(
-            (batch_size, 1), self.vocabulary.decoration_vocabulary["^"], dtype=torch.long).cuda()  # (batch, 1)
+            (batch_size, 1), self.vocabulary.decoration_vocabulary["^"], dtype=torch.long)  # (batch, 1)
         # print(f"input_vector: {input_vector}")
         seq_lengths = torch.ones(batch_size)  # (batch)
         encoder_padded_seqs, hidden_states = self.network.forward_encoder(scaffold_seqs, scaffold_seq_lengths)
-        nlls = torch.zeros(batch_size).cuda()
-        not_finished = torch.ones(batch_size, 1, dtype=torch.long).cuda()
+        nlls = torch.zeros(batch_size)
+        not_finished = torch.ones(batch_size, 1, dtype=torch.long)
         sequences = []
         for _ in range(self.max_sequence_length - 1):
             logits, hidden_states, _ = self.network.forward_decoder(

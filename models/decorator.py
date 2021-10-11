@@ -60,7 +60,7 @@ class Encoder(tnn.Module):
         return padded_seqs, (hs_h, hs_c)
 
     def _initialize_hidden_state(self, batch_size):
-        return torch.zeros(self.num_layers*2, batch_size, self.num_dimensions).cuda()
+        return torch.zeros(self.num_layers*2, batch_size, self.num_dimensions)
 
     def get_params(self):
         parameter_enums = GenerativeModelParametersEnum
