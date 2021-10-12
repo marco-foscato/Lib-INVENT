@@ -35,7 +35,7 @@ The scripts are organised in the following folder structure:
 
 Requirements
 ------------
-The repository includes a Conda `environment.yml` file with the required libraries to run all the scripts. All models were tested on Linux with both a Tesla V-100 and a Geforce 2070. It should work just fine with other Linux setups and a mid-high range GPU.
+The repository includes a Conda `environment.yml` file with the required libraries to run all the scripts. All models were tested on Linux with both a Tesla V-100 and a Geforce 2070. It should work just fine with other Linux setups and regular CPUs. **NB: see the [original repository](https://github.com/MolecularAI/Lib-INVENT) for a GPU-only setup.**
 
 Install
 -------
